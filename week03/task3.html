@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSE 121b: Week 03 | Sample Solution</title>
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <nav>
+        <ul id="menu">
+            <li><a id="toggleMenu">&equiv;</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Lesson 2</a></li>
+            <li><a href="#" class="active">Lesson 3</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Functions</h1>
+    </header>
+    <main>
+        <section id="functions">
+            <article>
+                <h2>Addition</h2>
+                <div>
+                    <label for="addend1">Number 1:</label>
+                    <input type="text" id="addend1" name="addend1">
+                </div>
+                <div>
+                    <label for="addend2">Number 2:</label>
+                    <input type="text" id="addend2" name="addend2">
+                </div>
+                <div>
+                    <input type="button" id="addNumbers" onclick="addNumbers(document.getElementById('addend1').value, document.getElementById('addend2').value)" value="Add Numbers">
+                </div>
+                <div>
+                    <label for="sum">Sum:</label>
+                    <input type="text" id="sum" name="sum" disabled>
+                </div>
+            </article>
+            <article>
+                <h2>Subtraction</h2>
+                <div>
+                    <label for="minuend">Number 1:</label>
+                    <input type="text" id="minuend" name="minuend">
+                </div>
+                <div>
+                    <label for="subtrahend">Number 2:</label>
+                    <input type="text" id="subtrahend" name="subtrahend">
+                </div>
+                <div>
+                    <input type="button" id="subtractNumbers" onclick="subtractNumbers(document.getElementById('minuend').value, document.getElementById('subtrahend').value)" value="Subtract Numbers">
+                </div>
+                <div>
+                    <label for="difference">Difference:</label>
+                    <input type="text" id="difference" name="difference" disabled>
+                </div>
+            </article>
+            <article>
+                <h2>Multiplication</h2>
+                <div>
+                    <label for="factor1">Number 1:</label>
+                    <input type="text" id="factor1" name="factor1">
+                </div>
+                <div>
+                    <label for="factor2">Number 2:</label>
+                    <input type="text" id="factor2" name="factor2">
+                </div>
+                <div>
+                    <input type="button" id="multiplyNumbers" onclick="multiplyNumbers(document.getElementById('factor1').value, document.getElementById('factor2').value)" value="Multiply Numbers">
+                </div>
+                <div>
+                    <label for="product">Product:</label>
+                    <input type="text" id="product"  name="product" disabled>
+                </div>
+            </article>
+            <article>
+                <h2>Division</h2>
+                <div>
+                    <label for="dividend">Number 1:</label>
+                    <input type="text" id="dividend" name="dividend">
+                </div>
+                <div>
+                    <label for="divisor">Number 2:</label>
+                    <input type="text" id="divisor" name="divisor">
+                </div>
+                <div>
+                    <input type="button" id="divideNumbers" onclick="divideNumbers(document.getElementById('dividend').value, document.getElementById('divisor').value)" value="Divide Numbers">
+                </div>
+                <div>
+                    <label for="quotient">Quotient:</label>
+                    <input type="text" id="quotient" name="quotient" disabled>
+                </div>
+            </article>
+        </section>
+        <hr>
+        <section>
+            <h2>Array Methods</h2>
+            <p>
+                Source Array: <span id="array"></span>
+            </p>
+            <p>
+                Odd Numbers: <span id="odds"></span>
+            </p>
+            <p>
+                Even Numbers: <span id="evens"></span>
+            </p>
+            <p>
+                Sum of Source Array: <span id="sumOfArray"></span>
+            </p>
+            <p>
+                Source Array Times Two: <span id="multiplied"></span>
+            </p>
+            <p>
+                Sum of Source Array Times Two: <span id="sumOfMultiplied"></span>
+            </p>
+        </section>
+    </main>
+    <footer>
+        &copy;<span id="year"></span> | Functions | Lesson 3
+    </footer>
+    <script>
+    function addNumbers(addend1, addend2){
+        const sum = add(addend1, addend2)
+        document.getElementById('sum').value=sum
+    }
+    function add(number1, number2) {
+        return parseInt(number1) + parseInt(number2);
+    }
+    function subtractNumbers(minuend, subtrahend){
+        const result = subtract(minuend, subtrahend)
+        document.getElementById('difference').value=result
+    }
+    function subtract(number1, number2) {
+        return parseInt(number1) - parseInt(number2);
+    }
+    function multiplyNumbers(factor1, factor2){
+        const multi = multiply(factor1, factor2)
+        document.getElementById('product').value=multi
+    }
+    function multiply(number1, number2) {
+        return parseInt(number1) * parseInt(number2);
+    }
+    function divideNumbers(dividend, divisor){
+        const divi = divide(dividend, divisor)
+        document.getElementById('quotient').value=divi
+    }
+    function divide(number1, number2) {
+        return parseInt(number1) / parseInt(number2);
+    }
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        document.querySelector("#year").textContent = year;
+        let list = [...Array(25).keys()].map(i => i+1);
+        document.getElementById("array").innerHTML = list;
+        let oddsList = list.filter(num => num % 2 !== 0);
+        document.getElementById("odds").innerHTML = oddsList;
+        let evensList = list.filter(num => num % 2 === 0);
+        document.getElementById("evens").innerHTML = evensList;
+        let sum = list.reduce((acc, cur) => acc + cur);
+        document.getElementById("sumOfArray").innerHTML = sum;
+        let multipliedList = list.map(num => num * 2);
+        document.getElementById("multiplied").innerHTML = multipliedList;
+        let sumOfMultiplied = list.map(num => num * 2).reduce((acc, cur) => acc + cur);
+        document.getElementById("sumOfMultiplied").innerHTML = sumOfMultiplied;
+    </script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/task3.js"></script>
+</body>
+
+</html>

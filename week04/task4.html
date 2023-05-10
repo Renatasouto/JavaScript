@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>CSE 121b: Week 04 | Sample Solution</title>
+	<link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <nav>
+        <ul id="menu">
+            <li><a id="toggleMenu">&equiv;</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Lesson 2</a></li>
+            <li><a href="#">Lesson 3</a></li>
+            <li><a href="#" class="active">Lesson 4</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Biography Revisited</h1>
+        <img id="photo" src="images/escolhida.jpg" alt="Renata">
+    </header>
+    <main>
+        <section>
+            <div>
+                <label>Name:</label>
+                <span id="name">Renata</span>
+            </div>
+            <div>
+                <label>Favorite Foods:</label>
+                <ul id="favorite-foods"> <li>Coxinha</li> <li>Brazilian Beans</li> <li>Rice</li> <li>Salad</li> <li>Broccoli</li></ul>
+            </div>
+            <div>
+                <label>Hobbies:</label>
+                <ul id="hobbies"> <li>Watch Series</li> <li>Cooking</li> <li>Jump Rope</li> <li>Sleep With my Dogs</li> <li>Walk With my Husband</li> </ul>
+            </div>
+            <div>
+                <label>Places Lived:</label>
+                <dl id="places-lived"> <dt>Natal, Brazil</dt> <dd>167,263 km²</dd> <dt>Fairfield, Iowa</dt> <dd>16,5 km²</dd>
+        </section>
+    </main>
+	<footer>
+        &copy;<span id="year"></span> | Biography Revisited | Lesson 4
+    </footer>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/task4.js"></script>
+    <script>
+        const mySelf = {
+            name: "Renata",
+            photo: "images/escolhida.jpg",
+            favoriteFoods: ['Coxinha', 'Brazilian Beans', 'Rice', 'Salad', 'Broccoli', <ul> <li>'Coxinha'</li>, <li>Brazilian Beans</li> <li>Rice</li> <li>Salad</li> <li>Broccoli</li></ul>],
+            hobbies: ['Watch Series', 'Cooking', 'Jump Rope', 'Sleep With my Dogs', 'Walk With my Husband', <ul> <li>Watch Series</li> <li>Cooking</li> <li>Jump Rope</li> <li>Sleep With my Dogs</li> <li>Walk With my Husband</li></ul>],
+            placesLived: [
+                {
+                    place: "Natal, Brazil",
+                    length: "167,263 km²"
+                },
+                {
+                    place: "Fairfield, Iowa",
+                    length: "16,5 km²"
+                },
+                <dt>Natal, Brazil</dt>, <dd>167,263 km²</dd>, <dt>Fairfield, Iowa</dt>, <dd>16,5 km²</dd>
+                
+            ]
+
+            
+        }
+
+    </script>
+</body>
+
+</html>
