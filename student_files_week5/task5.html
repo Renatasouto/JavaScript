@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSE 121b: Week 05 | Sample Solution</title>
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <nav>
+        <ul id="menu">
+            <li><a id="toggleMenu">&equiv;</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Lesson 2</a></li>
+            <li><a href="#">Lesson 3</a></li>
+            <li><a href="#">Lesson 4</a></li>
+            <li><a href="#" class="active">Lesson 5</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Controlling Your Code</h1>
+    </header>
+    <main>
+        <section>
+            <h2>
+                Today is <span id="message2"></span>.
+            </h2>
+            <h3>
+                <span id="message1"></span>
+            </h3>
+        </section>
+        <hr>
+        <section>
+            <h2>Temples in Utah</h2>
+            <p>
+                Sort by: 
+                <select id="sortBy">
+                    <option value="templeNameAscending">Temple Name Ascending</option>
+                    <option value="templeNameDescending">Temple Name Descending</option>
+                </select>
+            </p>
+            <div id="temples">
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy;<span id="year"></span> | Controlling Your Code | Lesson 5
+    </footer>
+    <script>
+        const currentDate = new Date();
+        const weekDay = currentDate.getDay();
+        let message;
+
+        if (weekDay >= 1 && weekDay <= 5) {
+        message = 'Hang in there!';
+        } else {
+        message = 'Woohoo! It is the weekend!';
+        }
+
+        let switchMessage;
+
+        switch (weekDay) {
+        case 0:
+            switchMessage = 'Sunday';
+            break;
+        case 1:
+            switchMessage = 'Monday';
+            break;
+        case 2:
+            switchMessage = 'Tuesday';
+            break;
+        case 3:
+            switchMessage = 'Wednesday';
+            break;
+        case 4:
+            switchMessage = 'Thursday';
+            break;
+        case 5:
+            switchMessage = 'Friday';
+            break;
+        case 6:
+            switchMessage = 'Saturday';
+            break;
+        }
+
+        document.getElementById('message1').textContent = message;
+        document.getElementById('message2').textContent = switchMessage;
+
+        let templeList = [];
+
+        function output(temples) {
+        const templesElement = document.getElementById('temples');
+        templesElement.innerHTML = '';
+
+        temples.forEach((temple) => {
+            const article = document.createElement('article');
+
+            const h3 = document.createElement('h3');
+            h3.textContent = temple.templeName;
+            article.appendChild(h3);
+
+            const h4Location = document.createElement('h4');
+            h4Location.textContent = `Location: ${temple.location}`;
+            article.appendChild(h4Location);
+
+            const h4Dedicated = document.createElement('h4');
+            h4Dedicated.textContent = `Dedicated: ${temple.dedicated}`;
+            article.appendChild(h4Dedicated);
+
+            const img = document.createElement('img');
+            img.src = temple.imageUrl;
+            img.alt = temple.templeName;
+            article.appendChild(img);
+
+            templesElement.appendChild(article);
+        });
+        }
+
+        async function getTemples() {
+        try {
+            const response = await fetch('https://byui-cse.github.io/cse121b-course/week05/temples.json');
+            templeList = await response.json();
+            output(templeList);
+        } catch (error) {
+            console.log('An error occurred while fetching the temples:', error);
+        }
+        }
+
+        function reset() {
+        const templesElement = document.getElementById('temples');
+        templesElement.innerHTML = '';
+        }
+
+        function sortBy() {
+        reset();
+        const sortByValue = document.getElementById('sortBy').value;
+
+        switch (sortByValue) {
+            case 'templeNameAscending':
+            templeList.sort((a, b) => a.templeName.localeCompare(b.templeName));
+            break;
+            case 'templeNameDescending':
+            templeList.sort((a, b) => b.templeName.localeCompare(a.templeName));
+            break;
+        }
+
+        output(templeList);
+        }
+
+        document.getElementById('sortBy').addEventListener('change', sortBy);
+
+        getTemples();
+
+
+    </script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/task5.js"></script>
+</body>
+
+</html>
